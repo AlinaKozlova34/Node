@@ -27,10 +27,6 @@ Once running, access the Swagger UI at:
 http://127.0.0.1:3000/docs
 ```
 
-## 🧪 Development
-Make changes in source files and they'll reload automatically thanks to nodemon.
-
-
 
 
 
