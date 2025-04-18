@@ -1,0 +1,102 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Swagger",
+    "description": "Node project"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:3000/api",
+      "description": "(Dev Local Host)"
+    },
+    {
+      "url": "http://127.0.0.1:8080/api",
+      "description": "(Dev Production LocalHost)"
+    }
+  ],
+  "security": [
+    {
+      "JWT": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "JWT": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Register user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./schema/register-request.json"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User registered"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Login user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./schema/login-request.json"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JWT token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema/login-response.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get users",
+        "security": [{ "JWT": [] }],
+        "responses": {
+          "200": {
+            "description": "List of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema/users-response.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
